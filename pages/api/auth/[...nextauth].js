@@ -1,6 +1,10 @@
 import NextAuth from 'next-auth'
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import { prisma } from '@lib/db'
 
 export default NextAuth({
+  adapter: PrismaAdapter(prisma),
+
   // next-auth azure-ad provider wasnt working for me, credit here
   // https://github.com/nextauthjs/next-auth/discussions/2690
   providers: [
@@ -19,7 +23,8 @@ export default NextAuth({
       profile(profile) {
         return {
           id: profile.sub,
-          ...profile,
+          name: profile.name,
+          email: profile.email,
         }
       },
       options: {
