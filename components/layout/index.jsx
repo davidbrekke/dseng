@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Nav from './Nav'
 
-const Layout = ({ children, title }) => {
+const Layout = ({ children, title, user }) => {
   return (
     <>
       <Head>
@@ -11,7 +11,7 @@ const Layout = ({ children, title }) => {
       </Head>
 
       <main className="w-screen h-screen overflow-scroll flex flex-col-reverse md:flex-row">
-        <Nav />
+        <Nav user={user} />
         {children}
       </main>
     </>

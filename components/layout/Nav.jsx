@@ -5,10 +5,12 @@ import {
   PuzzleIcon,
   LogoutIcon,
   AcademicCapIcon,
+  UserGroupIcon,
+  TerminalIcon,
 } from '@heroicons/react/solid'
 import { signOut } from 'next-auth/react'
 
-const Nav = () => {
+const Nav = ({ user }) => {
   const router = useRouter()
   const currentPath = router.pathname
 
@@ -18,6 +20,7 @@ const Nav = () => {
 
   return (
     <nav className="bg-red-800 flex flex-row items-center justify-around py-3 px-0 md:py-0 md:px-3 md:flex-col text-gray-50">
+      {/* HOME */}
       <Link href="/">
         <HomeIcon
           width={50}
@@ -26,6 +29,7 @@ const Nav = () => {
           }
         />
       </Link>
+      {/* COURSES */}
       <Link href="/">
         <PuzzleIcon
           width={50}
@@ -36,14 +40,45 @@ const Nav = () => {
           }
         />
       </Link>
-      <Link href="/">
-        <AcademicCapIcon
-          width={50}
-          className={
-            currentPath === '/plan' ? classes.navIconSelected : classes.navIcon
-          }
-        />
-      </Link>
+      {/* PLAN */}
+      {user.role === 'student' && (
+        <Link href="/">
+          <AcademicCapIcon
+            width={50}
+            className={
+              currentPath === '/plan'
+                ? classes.navIconSelected
+                : classes.navIcon
+            }
+          />
+        </Link>
+      )}
+      {/* STUDENTS */}
+      {user.role === 'advisor' && (
+        <Link href="/">
+          <UserGroupIcon
+            width={50}
+            className={
+              currentPath === '/students'
+                ? classes.navIconSelected
+                : classes.navIcon
+            }
+          />
+        </Link>
+      )}
+      {/* TERMS */}
+      {user.role === 'advisor' && (
+        <Link href="/">
+          <TerminalIcon
+            width={50}
+            className={
+              currentPath === '/terms'
+                ? classes.navIconSelected
+                : classes.navIcon
+            }
+          />
+        </Link>
+      )}
       <LogoutIcon
         onClick={handleSignout}
         width={40}
