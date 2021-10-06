@@ -38,7 +38,7 @@ const Nav = () => {
 
   return (
     <nav className="bg-red-800 flex flex-row items-center justify-around py-3 px-0 md:py-0 md:px-3 md:flex-col text-gray-50">
-      <Link href="/">
+      <Link href="/" passHref>
         <HomeIcon
           width={50}
           className={
@@ -46,7 +46,7 @@ const Nav = () => {
           }
         />
       </Link>
-      <Link href="/">
+      <Link href="/" passHref>
         <PuzzleIcon
           width={50}
           className={
@@ -56,7 +56,7 @@ const Nav = () => {
           }
         />
       </Link>
-      <Link href="/">
+      <Link href="/" passHref>
         <AcademicCapIcon
           width={50}
           className={
