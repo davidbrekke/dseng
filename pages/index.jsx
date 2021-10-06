@@ -1,30 +1,27 @@
-import axios from 'axios'
-import { getSession, useSession, signOut } from 'next-auth/react'
+import { getSession } from 'next-auth/react'
 
-export default function App({ message }) {
-  const { data: session } = useSession()
+import { prisma } from '@lib/db'
+import Layout from '@components/layout'
+
+export default function App({ user }) {
   return (
-    <div className="flex flex-col w-screen h-screen justify-center items-center space-y-5">
-      <h1>
-        hello <span className="text-red-800">{session?.user.name}</span>!
-      </h1>
-      <h2>{message}</h2>
-      <button
-        className="py-2 px-4 rounded-lg bg-red-800 text-gray-50"
-        onClick={signOut}
-      >
-        signout
-      </button>
-    </div>
+    <Layout>
+      <section className="w-full h-full flex flex-col items-center justify-center space-y-5">
+        <h1>
+          hello{' '}
+          <span className="text-red-800">
+            {user.name.split(',')[1].split(' ')[1]}
+          </span>
+          !
+        </h1>
+        <h2>you are a {user.role}!</h2>
+      </section>
+    </Layout>
   )
 }
 
 export async function getServerSideProps({ params, req, res }) {
   const session = await getSession({ req })
-
-  const {
-    data: { message },
-  } = await axios.get(`${process.env.api}/hi`)
 
   if (!session) {
     return {
@@ -34,9 +31,14 @@ export async function getServerSideProps({ params, req, res }) {
       },
     }
   }
+
+  const user = await prisma.user.findUnique({
+    where: { email: session.user.email },
+  })
+
   return {
     props: {
-      message,
+      user,
     },
   }
 }
