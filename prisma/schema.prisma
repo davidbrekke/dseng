@@ -61,3 +61,14 @@ enum Role {
   student
   advisor
 }
+
+model Course {
+  id            String    @id @default(cuid())
+  title         String
+  code          String    @unique
+  credits       Int
+  clockHours    Int
+  required      Boolean
+}
+
+
