@@ -10,7 +10,7 @@ const Layout = ({ children, title, user }) => {
         <meta author="david magnuson" />
       </Head>
 
-      <main className="w-screen h-screen overflow-scroll flex flex-col-reverse md:flex-row">
+      <main className="w-screen h-screen flex flex-col-reverse md:flex-row">
         <Nav user={user} />
         {children}
       </main>
