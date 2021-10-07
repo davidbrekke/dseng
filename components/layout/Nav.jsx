@@ -30,11 +30,11 @@ const Nav = ({ user }) => {
         />
       </Link>
       {/* COURSES */}
-      <Link href="/">
+      <Link href="/courses">
         <PuzzleIcon
           width={50}
           className={
-            currentPath === '/courses'
+            currentPath.split('/')[1] === 'courses'
               ? classes.navIconSelected
               : classes.navIcon
           }
