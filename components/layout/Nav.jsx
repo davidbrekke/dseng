@@ -30,7 +30,7 @@ const Nav = ({ user }) => {
         />
       </Link>
       {/* COURSES */}
-      <Link href="/" passHref>
+      <Link href="/courses" passHref>
         <PuzzleIcon
           width={50}
           className={
