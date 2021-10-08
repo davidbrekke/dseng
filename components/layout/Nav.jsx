@@ -34,7 +34,7 @@ const Nav = ({ user }) => {
         <PuzzleIcon
           width={50}
           className={
-            currentPath === '/courses'
+            currentPath.split('/')[1] === 'courses'
               ? classes.navIconSelected
               : classes.navIcon
           }
