@@ -21,7 +21,7 @@ const Nav = ({ user }) => {
   return (
     <nav className="bg-red-800 flex flex-row items-center justify-around py-3 px-0 md:py-0 md:px-3 md:flex-col text-gray-50">
       {/* HOME */}
-      <Link href="/">
+      <Link href="/" passHref>
         <HomeIcon
           width={50}
           className={
@@ -30,11 +30,11 @@ const Nav = ({ user }) => {
         />
       </Link>
       {/* COURSES */}
-      <Link href="/courses">
+      <Link href="/" passHref>
         <PuzzleIcon
           width={50}
           className={
-            currentPath.split('/')[1] === 'courses'
+            currentPath === '/courses'
               ? classes.navIconSelected
               : classes.navIcon
           }
@@ -42,7 +42,7 @@ const Nav = ({ user }) => {
       </Link>
       {/* PLAN */}
       {user.role === 'student' && (
-        <Link href="/">
+        <Link href="/" passHref>
           <AcademicCapIcon
             width={50}
             className={
@@ -55,7 +55,7 @@ const Nav = ({ user }) => {
       )}
       {/* STUDENTS */}
       {user.role === 'advisor' && (
-        <Link href="/">
+        <Link href="/" passHref>
           <UserGroupIcon
             width={50}
             className={
@@ -68,7 +68,7 @@ const Nav = ({ user }) => {
       )}
       {/* TERMS */}
       {user.role === 'advisor' && (
-        <Link href="/">
+        <Link href="/" passHref>
           <TerminalIcon
             width={50}
             className={
