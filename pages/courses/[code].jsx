@@ -1,5 +1,5 @@
 import { getSession } from 'next-auth/react'
-
+import Link from 'next/link'
 import { prisma } from '@lib/db'
 import Layout from '@components/layout'
 import PageAnimate from '@components/PageAnimate'
@@ -20,6 +20,13 @@ export default function Courses({ user, course }) {
           <h2 className="text-xl text-gray-700">{course.clockHours} hours</h2>
         </div>
         <p className="text-xl text-gray-600">{course.description}</p>
+        {user.role === 'advisor' && (
+          <Link href={`/courses/edit/${course.code}`} passHref>
+            <div className="px-4 py-2 rounded-lg shadow bg-red-800 text-gray-50 cursor-pointer hover:shadow-lg transition">
+              edit
+            </div>
+          </Link>
+        )}
       </PageAnimate>
     </Layout>
   )
