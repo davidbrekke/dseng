@@ -69,6 +69,7 @@ model Course {
   credits       Int
   clockHours    Int
   required      Boolean
+  description   String?
 }
 
 
