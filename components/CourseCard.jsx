@@ -3,7 +3,7 @@ import { ExclamationCircleIcon } from '@heroicons/react/solid'
 
 export default function CourseCard({ course }) {
   return (
-    <Link href={`/courses/${course.code}`} passHref>
+    <Link href={`/courses/${course.id}`} passHref>
       <div className="p-5 rounded-lg shadow flex flex-col space-y-3 bg-white items-center font-bold cursor-pointer hover:shadow-xl transition">
         <h1 className="text-2xl text-gray-800">{course.title}</h1>
         <div className="flex w-full justify-around space-x-1 items-center">
