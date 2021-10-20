@@ -1,5 +1,8 @@
 import 'tailwindcss/tailwind.css'
 import { SessionProvider } from 'next-auth/react'
+import { QueryClient, QueryClientProvider } from 'react-query'
+
+const queryClient = new QueryClient()
 
 export default function _App({
   Component,
@@ -7,7 +10,9 @@ export default function _App({
 }) {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </SessionProvider>
   )
 }
