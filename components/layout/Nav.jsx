@@ -41,21 +41,17 @@ const Nav = ({ user }) => {
         />
       </Link>
       {/* PLAN */}
-      {user.role === 'student' && (
-        <Link href="/" passHref>
-          <AcademicCapIcon
-            width={50}
-            className={
-              currentPath === '/plan'
-                ? classes.navIconSelected
-                : classes.navIcon
-            }
-          />
-        </Link>
-      )}
+      <Link href="/plans" passHref>
+        <AcademicCapIcon
+          width={50}
+          className={
+            currentPath === '/plan' ? classes.navIconSelected : classes.navIcon
+          }
+        />
+      </Link>
       {/* STUDENTS */}
       {user.role === 'advisor' && (
-        <Link href="/" passHref>
+        <Link href="/plans" passHref>
           <UserGroupIcon
             width={50}
             className={
