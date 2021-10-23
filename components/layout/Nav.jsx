@@ -45,7 +45,9 @@ const Nav = ({ user }) => {
         <AcademicCapIcon
           width={50}
           className={
-            currentPath === '/plan' ? classes.navIconSelected : classes.navIcon
+            currentPath.split('/')[1] === 'plans'
+              ? classes.navIconSelected
+              : classes.navIcon
           }
         />
       </Link>
