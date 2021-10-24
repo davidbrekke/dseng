@@ -4,7 +4,11 @@ const plans = async (req, res) => {
   // GET - send all plans
   if (req.method === 'GET') {
     try {
-      const plans = await prisma.plan.findMany()
+      const plans = await prisma.plan.findMany({
+        include: {
+          program: true,
+        },
+      })
       return res.json(plans)
     } catch (err) {
       console.log('plans GET Error', err)
