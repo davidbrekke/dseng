@@ -1,4 +1,3 @@
-import { getSession } from 'next-auth/react'
 import Link from 'next/link'
 import { PlusIcon } from '@heroicons/react/solid'
 import { useQuery } from 'react-query'

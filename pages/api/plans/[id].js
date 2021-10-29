@@ -6,7 +6,9 @@ const plan = async (req, res) => {
     try {
       const plan = await prisma.plan.findUnique({
         where: { id: req.query.id },
-      })
+        include: {
+          user: true,
+      }})
       return res.json(plan)
     } catch (err) {
       console.log('plan GET Error', err)

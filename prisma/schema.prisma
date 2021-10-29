@@ -73,8 +73,8 @@ model Course {
   clockHours  Int
   required    Boolean
   description String?
-  plan        Plan?   @relation(fields: [planId], references: [id])
-  planId      String?
+  term        Term?   @relation(fields: [termId], references: [id])
+  termId      String?
 }
 
 model Program {
@@ -96,15 +96,15 @@ model Plan {
   program   Program  @relation(fields: [programId], references: [id])
   programId String
   terms     Term[]
-  course    Course[]
 }
 
 model Term {
-  id     String  @id @default(cuid())
-  year   Int
-  season Season  @default(fall)
-  plan   Plan?   @relation(fields: [planId], references: [id])
-  planId String?
+  id      String   @id @default(cuid())
+  year    Int
+  season  Season   @default(fall)
+  plan    Plan?    @relation(fields: [planId], references: [id])
+  planId  String?
+  courses Course[]
 }
 
 enum Season {
