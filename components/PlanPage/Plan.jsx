@@ -1,3 +1,5 @@
+import { Droppable } from 'react-beautiful-dnd'
+
 import { PlusIcon, SaveIcon } from '@heroicons/react/solid'
 import { useMutation } from 'react-query'
 
@@ -28,12 +30,20 @@ const Plan = ({ terms, plan }) => {
             <h1>{term.season}</h1>
             <h2>{term.year}</h2>
           </div>
-          <div className="flex flex-col items-center">
-            {term.courses.map((course) => (
-              <Course key={course.id} course={course} />
-            ))}
-            <Plus />
-          </div>
+          <Droppable droppableId={term.id}>
+            {(provided) => (
+              <div
+                innerref={provided.innerRef}
+                {...provided.droppableProps}
+                className="flex flex-col items-center"
+              >
+                {term.courses.map((course, i) => (
+                  <Course key={course.id} course={course} index={i} />
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
         </div>
       ))}
       <Plus onClick={handleAdd} />

@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from 'react-query'
+import { Droppable } from 'react-beautiful-dnd'
 
 import { useGetCourses } from '@lib/courses'
 import Course from './Course'
@@ -23,12 +24,21 @@ const CourseList = () => {
           </span>
         </div>
       </header>
-      <div className="flex flex-row flex-wrap p-2 items-center justify-center">
-        {isLoading && 'loading courses'}
-        {isError && `courses error: ${error.message}`}
-        {courses &&
-          courses.map((course) => <Course key={course.id} course={course} />)}
-      </div>
+      <Droppable droppableId="course list">
+        {(provided) => (
+          <div
+            innerref={provided.innerRef}
+            {...provided.droppableProps}
+            className="flex flex-row flex-wrap p-2 items-center justify-center"
+          >
+            {isLoading && 'loading courses'}
+            {isError && `courses error: ${error?.message}`}
+            {courses?.map((course, i) => (
+              <Course key={course.id} course={course} index={i} />
+            ))}
+          </div>
+        )}
+      </Droppable>
     </div>
   )
 }
