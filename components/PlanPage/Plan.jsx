@@ -50,3 +50,10 @@ const Plus = ({ onClick }) => {
     </div>
   )
 }
+// const Save = ({ onClick }) => {
+//   return (
+//     <div className="flex items-center justify-center cursor-pointer p-1 rounded-lg bg-gray-200 hover:bg-gray-300 transition">
+//       <SaveIcon width={20} height={20} onClick={onClick} />
+//     </div>
+//   )
+// }
