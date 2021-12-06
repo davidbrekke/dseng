@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  
+    # app server
+    config.vm.define "dseng" do |dseng|
+  
+      # ubing ubuntu os
+      dseng.vm.box = "ubuntu/bionic64"
+  
+      # forward the ports and give private ip
+      dseng.vm.network "forwarded_port", guest: 3000, host: 3000
+      dseng.vm.network "private_network", ip: "192.168.56.100"
+      
+      # syncing folders
+      dseng.vm.synced_folder "../../", "/dseng"
+      
+      # provision the app server to run shell script on start
+      dseng.vm.provision :shell, :path => "./app.sh"
+    end
+  end
