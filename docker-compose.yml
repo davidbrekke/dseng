@@ -2,12 +2,19 @@ version: '3.3'
 
 services:
   app:
-    ports:
-      - 3000:3000
     build:
       context: ./
       dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_api=${NEXT_PUBLIC_api}
+        - AZURE_AD_CLIENT_ID=${AZURE_AD_CLIENT_ID}
+        - AZURE_AD_CLIENT_SECRET=${AZURE_AD_CLIENT_SECRET}
+        - AZURE_AD_TENANT_ID=${AZURE_AD_TENANT_ID}
+        - JWT_SIGNING_PRIVATE_KEY=${JWT_SIGNING_PRIVATE_KEY}
+        - NEXTAUTH_URL=${NEXTAUTH_URL}
+        - DATABASE_URL=${DATABASE_URL}
+        - SHADOW_DATABASE_URL=${SHADOW_DATABASE_URL}
     volumes:
-      - ./:/usr/src/app
-      - /usr/src/app/node_modules
-      - /usr/src/app/.next
+      - ./app
+      - /app/node_modules
+      - /app/.next
