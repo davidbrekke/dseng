@@ -17,5 +17,5 @@ RUN yarn run prisma generate
 RUN yarn build
 
 # starting the app
-CMD ["yarn", "start"]
 EXPOSE 3000
+CMD ["yarn", "start"]
