@@ -73,6 +73,14 @@ start the vagrant server
 
 - `vagrant up`
 
+ssh into the vagrant server
+
+    - `vagrant ssh`
+
+check the docker container
+
+    - `sudo docker ps`
+
 ## pages
 
 | url               | page description         | status |
